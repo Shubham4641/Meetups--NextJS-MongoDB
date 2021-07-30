@@ -1,26 +1,24 @@
-import { MongoClient } from 'mongodb';
+
+
 import { Fragment } from 'react';
 import Head from 'next/head';
+import { MongoClient } from 'mongodb';
+
 import MeetupList from '../components/meetups/MeetupList';
 
 function HomePage(props) {
-  return(
-
+  return (
     <Fragment>
-
       <Head>
-
         <title>React Meetups</title>
-        <meta name="description" content= "Browse a huge list of highly react meetup" />
-
+        <meta
+          name='description'
+          content='Browse a huge list of highly active React meetups!'
+        />
       </Head>
-
-<MeetupList meetups={props.meetups} />;
-
+      <MeetupList meetups={props.meetups} />;
     </Fragment>
-
-
-  )
+  );
 }
 
 // export async function getServerSideProps(context) {
@@ -38,11 +36,8 @@ function HomePage(props) {
 
 export async function getStaticProps() {
   // fetch data from an API
-
-
-  const client = await MongoClient.connect('mongodb+srv://shubham4641:shubham@cluster0.4jqwf.mongodb.net/meetups?retryWrites=true&w=majority');
-
-
+  const client = await MongoClient.connect('mongodb+srv://shubham4641:shubham1993@cluster0.4jqwf.mongodb.net/meetups?retryWrites=true&w=majority', {useUnifiedTopology:true, useNewUrlParser:true});
+  
   const db = client.db();
 
   const meetupsCollection = db.collection('meetups');
@@ -65,3 +60,6 @@ export async function getStaticProps() {
 }
 
 export default HomePage;
+
+  
+
